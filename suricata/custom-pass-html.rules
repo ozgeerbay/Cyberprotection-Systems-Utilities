@@ -1,0 +1,17 @@
+# Rule 1: Detect exact pattern "GET pass.html" in HTTP traffic to HOME_NET (port 80)
+alert tcp any any -> $HOME_NET 80 (
+  msg:"HTTP Attack Detected.";
+  flow:to_server,established;
+  content:"GET pass.html";
+  sid:1000101;
+  rev:1;
+)
+
+# Rule 2: Detect "pass.html" between bytes 5 and 261 in HTTP data section to HOME_NET (port 80)
+alert tcp any any -> $HOME_NET 80 (
+  msg:"Attempt to Access pass.html File Detected.";
+  flow:to_server,established;
+  content:"pass.html"; offset:5; depth:256;
+  sid:1000102;
+  rev:1;
+)
