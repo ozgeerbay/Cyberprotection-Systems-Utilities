@@ -10,3 +10,10 @@ Run PowerShell 7:
 Install-Module -Name invoke-atomicredteam,powershell-yaml -Scope CurrentUser
 IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicsfolder.ps1' -UseBasicParsing);
 Install-AtomicsFolder
+```
+
+Verify installation:
+```powershell
+Invoke-AtomicTest T1003 -ShowDetailsBrief
+Invoke-AtomicTest T1003 -CheckPrereqs
+```
